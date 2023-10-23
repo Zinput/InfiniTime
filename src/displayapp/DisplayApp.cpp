@@ -30,6 +30,7 @@
 #include "displayapp/screens/PassKey.h"
 #include "displayapp/screens/Error.h"
 #include "displayapp/screens/Weather.h"
+#include "displayapp/screens/Sleep.h"
 
 #include "drivers/Cst816s.h"
 #include "drivers/St7789.h"
@@ -48,6 +49,7 @@
 #include "displayapp/screens/settings/SettingChimes.h"
 #include "displayapp/screens/settings/SettingShakeThreshold.h"
 #include "displayapp/screens/settings/SettingBluetooth.h"
+#include "displayapp/screens/settings/SettingSleep.h"
 
 #include "libs/lv_conf.h"
 
@@ -500,6 +502,9 @@ void DisplayApp::LoadScreen(Apps app, DisplayApp::FullRefreshDirections directio
     case Apps::SettingBluetooth:
       currentScreen = std::make_unique<Screens::SettingBluetooth>(this, settingsController);
       break;
+    case Apps::SettingSleep;
+      currentScreen = std::make_unique<Screens::SettingSleep>();
+      break;
     case Apps::BatteryInfo:
       currentScreen = std::make_unique<Screens::BatteryInfo>(batteryController);
       break;
@@ -527,6 +532,9 @@ void DisplayApp::LoadScreen(Apps app, DisplayApp::FullRefreshDirections directio
       break;
     case Apps::Paddle:
       currentScreen = std::make_unique<Screens::Paddle>(lvgl);
+      break;
+    case Apps::Sleep:
+      currentScreen = std::make_unique<Screens::Sleep>();
       break;
     case Apps::Music:
       currentScreen = std::make_unique<Screens::Music>(systemTask->nimble().music());

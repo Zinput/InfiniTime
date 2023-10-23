@@ -405,6 +405,7 @@ list(APPEND SOURCE_FILES
         displayapp/screens/Error.cpp
         displayapp/screens/Alarm.cpp
         displayapp/screens/Styles.cpp
+        displayapp/screens/Sleep.cpp
         displayapp/Colors.cpp
         displayapp/widgets/Counter.cpp
         displayapp/widgets/PageIndicator.cpp
@@ -425,6 +426,7 @@ list(APPEND SOURCE_FILES
         displayapp/screens/settings/SettingChimes.cpp
         displayapp/screens/settings/SettingShakeThreshold.cpp
         displayapp/screens/settings/SettingBluetooth.cpp
+        displayapp/screens/settings/SettingSleep.cpp
 
         ## Watch faces
         displayapp/screens/WatchFaceAnalog.cpp
