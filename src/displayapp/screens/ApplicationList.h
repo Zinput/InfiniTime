@@ -55,7 +55,7 @@ namespace Pinetime {
           {"2", Apps::Twos, true},
           {Symbols::drum, Apps::Metronome, true},
           {Symbols::map, Apps::Navigation, Applications::Screens::Navigation::IsAvailable(filesystem)},
-          {"S", Apps::Sleep, true},
+          {Symbols::sleepTrack, Apps::Sleep, true},
 
           // {"M", Apps::Motion},
         }};
