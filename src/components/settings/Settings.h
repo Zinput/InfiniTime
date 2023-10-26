@@ -263,6 +263,17 @@ namespace Pinetime {
         return settings.stepsGoal;
       };
 
+      void SetSleepGoal(uint32_t goal) {
+        if (goal != settings.sleepGoal) {
+          settingsChanged = true;
+        }
+        settings.sleepGoal = goal;
+      };
+
+      uint32_t GetSleepGoal() const {
+        return settings.sleepGoal;
+      };
+
       void SetBleRadioEnabled(bool enabled) {
         bleRadioEnabled = enabled;
       };
@@ -280,6 +291,7 @@ namespace Pinetime {
         uint32_t version = settingsVersion;
         uint32_t stepsGoal = 10000;
         uint32_t screenTimeOut = 15000;
+        uint32_t sleepGoal = 480; // 480 minutes or 8 hours
 
         ClockType clockType = ClockType::H24;
         Notification notificationStatus = Notification::On;

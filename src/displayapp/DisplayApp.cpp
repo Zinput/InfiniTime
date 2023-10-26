@@ -503,7 +503,7 @@ void DisplayApp::LoadScreen(Apps app, DisplayApp::FullRefreshDirections directio
       currentScreen = std::make_unique<Screens::SettingBluetooth>(this, settingsController);
       break;
     case Apps::SettingSleep:
-      currentScreen = std::make_unique<Screens::SettingSleep>();
+      currentScreen = std::make_unique<Screens::SettingSleep>(settingsController);
       break;
     case Apps::BatteryInfo:
       currentScreen = std::make_unique<Screens::BatteryInfo>(batteryController);
