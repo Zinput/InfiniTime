@@ -2,6 +2,8 @@
 
 #include <task.h>
 
+#include <timers.h>
+
 #include "utility/Math.h"
 
 using namespace Pinetime::Controllers;
@@ -53,6 +55,8 @@ void MotionController::Update(int16_t x, int16_t y, int16_t z, uint32_t nbSteps)
   yHistory[0] = y;
   zHistory++;
   zHistory[0] = z;
+  epochHistory++;
+  epochHistory[0] = GetEpoch();
 
   stats = GetAccelStats();
 
@@ -127,6 +131,14 @@ bool MotionController::ShouldLowerSleep() const {
   }
 
   return true;
+}
+
+int_16_t MotionController::GetEpoch() {
+  int_16_t epoch {0};
+  for (uint8_t i {1}; i < 15; ++i) {
+    epoch += stats.zMean;
+    delay(1000);
+  }
 }
 
 void MotionController::Init(Pinetime::Drivers::Bma421::DeviceTypes types) {
