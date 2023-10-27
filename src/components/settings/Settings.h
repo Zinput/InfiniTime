@@ -263,15 +263,15 @@ namespace Pinetime {
         return settings.stepsGoal;
       };
 
-      void SetSleepGoal(uint32_t goal) {
-        if (goal != settings.sleepGoal) {
+      void SetSleepThresh(uint32_t goal) {
+        if (goal != settings.sleepThresh) {
           settingsChanged = true;
         }
-        settings.sleepGoal = goal;
+        settings.sleepThresh = goal;
       };
 
-      uint32_t GetSleepGoal() const {
-        return settings.sleepGoal;
+      uint32_t GetSleepThresh() const {
+        return settings.sleepThresh;
       };
 
       void SetBleRadioEnabled(bool enabled) {
@@ -291,7 +291,7 @@ namespace Pinetime {
         uint32_t version = settingsVersion;
         uint32_t stepsGoal = 10000;
         uint32_t screenTimeOut = 15000;
-        uint32_t sleepGoal = 480; // 480 minutes or 8 hours
+        uint32_t sleepThresh = 40; // threshold for sleep detection
 
         ClockType clockType = ClockType::H24;
         Notification notificationStatus = Notification::On;

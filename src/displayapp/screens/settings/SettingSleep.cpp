@@ -26,7 +26,7 @@ SettingSleep::SettingSleep(Pinetime::Controllers::Settings& settingsController) 
   lv_cont_set_layout(container1, LV_LAYOUT_COLUMN_LEFT);
 
   lv_obj_t* title = lv_label_create(lv_scr_act(), nullptr);
-  lv_label_set_text_static(title, "Daily sleep goal");
+  lv_label_set_text_static(title, "Wake Threshold");
   lv_label_set_align(title, LV_LABEL_ALIGN_CENTER);
   lv_obj_align(title, lv_scr_act(), LV_ALIGN_IN_TOP_MID, 15, 15);
 
@@ -36,11 +36,11 @@ SettingSleep::SettingSleep(Pinetime::Controllers::Settings& settingsController) 
   lv_label_set_align(icon, LV_LABEL_ALIGN_CENTER);
   lv_obj_align(icon, title, LV_ALIGN_OUT_LEFT_MID, -10, 0);
 
-  sleepGoal = lv_label_create(lv_scr_act(), nullptr);
-  lv_obj_set_style_local_text_font(sleepGoal, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_42);
-  lv_label_set_text_fmt(sleepGoal, "%lu h %lu", settingsController.GetSleepGoal()/60, settingsController.GetSleepGoal()%60);
-  lv_label_set_align(sleepGoal, LV_LABEL_ALIGN_CENTER);
-  lv_obj_align(sleepGoal, lv_scr_act(), LV_ALIGN_CENTER, 0, -20);
+  sleepThresh = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_font(sleepThresh, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_42);
+  lv_label_set_text_fmt(sleepThresh, "%lu", settingsController.GetSleepThresh());
+  lv_label_set_align(sleepThresh, LV_LABEL_ALIGN_CENTER);
+  lv_obj_align(sleepThresh, lv_scr_act(), LV_ALIGN_CENTER, 0, -20);
 
   static constexpr uint8_t btnWidth = 115;
   static constexpr uint8_t btnHeight = 80;
@@ -72,13 +72,13 @@ SettingSleep::~SettingSleep() {
 }
 
 void SettingSleep::UpdateSelected(lv_obj_t* object, lv_event_t event) {
-  uint32_t value = settingsController.GetSleepGoal();
+  uint32_t value = settingsController.GetSleepThresh();
 
   int valueChange = 0;
   if (event == LV_EVENT_SHORT_CLICKED) {
-    valueChange = 15;
+    valueChange = 1;
   } else if (event == LV_EVENT_LONG_PRESSED || event == LV_EVENT_LONG_PRESSED_REPEAT) {
-    valueChange = 60;
+    valueChange = 10;
   } else {
     return;
   }
@@ -89,9 +89,9 @@ void SettingSleep::UpdateSelected(lv_obj_t* object, lv_event_t event) {
     value -= valueChange;
   }
 
-  if (value >= 15 && value <= 42069) {
-    settingsController.SetSleepGoal(value);
-    lv_label_set_text_fmt(sleepGoal, "%lu h %lu", settingsController.GetSleepGoal()/60, settingsController.GetSleepGoal()%60);
-    lv_obj_realign(sleepGoal);
+  if (value >= 1 && value <= 420) {
+    settingsController.SetSleepThresh(value);
+    lv_label_set_text_fmt(sleepThresh, "%lu", settingsController.GetSleepThresh());
+    lv_obj_realign(sleepThresh);
   }
 }

@@ -16,7 +16,7 @@ namespace Pinetime {
 
       private:
         Controllers::Settings& settingsController;
-        lv_obj_t* sleepGoal; // in minutes
+        lv_obj_t* sleepThresh;
         lv_obj_t* btnPlus;
         lv_obj_t* btnMinus;
       };
