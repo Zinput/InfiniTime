@@ -32,12 +32,16 @@ namespace Pinetime {
         return zHistory[0];
       }
 
-      int16_t Epoch() const {
-        return epochHistory[0];
-      }
-
       uint32_t NbSteps() const {
         return nbSteps;
+      }
+      
+      uint16_t GetSleepMinutes() const {
+        return sleepMinutes;
+      }
+
+      void SetSleepMinutes(uint16_t minutes) {
+        sleepMinutes = minutes;
       }
 
       void ResetTrip() {
@@ -69,6 +73,7 @@ namespace Pinetime {
     private:
       uint32_t nbSteps = 0;
       uint32_t currentTripSteps = 0;
+      uint16_t sleepMinutes = 0;
 
       TickType_t lastTime = 0;
       TickType_t time = 0;
@@ -87,17 +92,13 @@ namespace Pinetime {
 
       AccelStats GetAccelStats() const;
 
-      int16_t GetEpoch();
-
       AccelStats stats = {};
 
       int16_t lastX = 0;
       int16_t x = 0;
       static constexpr uint8_t histSize = 8;
-      static constexpr uint8_t activityWindowSize = 16;
       Utility::CircularBuffer<int16_t, histSize> yHistory = {};
       Utility::CircularBuffer<int16_t, histSize> zHistory = {};
-      Utility::CircularBuffer<int16_t, activityWindowSize> epochHistory = {};
       int32_t accumulatedSpeed = 0;
 
       DeviceTypes deviceType = DeviceTypes::Unknown;
