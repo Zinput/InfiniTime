@@ -1,4 +1,6 @@
 #pragma once
+
+#include <FreeRTOS.h>
 #include <cstdint>
 #include <task.h>
 #include <queue.h>

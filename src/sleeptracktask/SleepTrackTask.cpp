@@ -30,16 +30,16 @@ void SleepTrackTask::Work() {
     epochHistory++;
     epochHistory[0] = SleepTrackTask::GetEpoch();
   }
-  if (SleepTrackTask::GetActivity() < settingsController.GetSleepThresh()) {
+  if (SleepTrackTask::GetActivity() < static_cast<int16_t>(settingsController.GetSleepThresh())) {
     motionController.SetSleepMinutes(motionController.GetSleepMinutes() + 1);
   }
 }
 
 int16_t SleepTrackTask::GetEpoch() {
-  int_16_t epoch {0};
+  int16_t epoch {0};
   for (uint8_t i {1}; i < 15; ++i) {
     epoch += motionController.stats.zMean;
-    xTaskDelay(4000); // delay for 4000 ticks? How long is a tick?
+    vTaskDelay(4000); // delay for 4000 ticks? How long is a tick?
   }
   return epoch;
 }
