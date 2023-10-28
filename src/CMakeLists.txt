@@ -493,6 +493,8 @@ list(APPEND SOURCE_FILES
         components/heartrate/HeartRateController.cpp
         components/heartrate/Ppg.cpp
 
+        sleeptracktask/SleepTrackTask.cpp
+
         buttonhandler/ButtonHandler.cpp
         touchhandler/TouchHandler.cpp
 
@@ -556,6 +558,7 @@ list(APPEND RECOVERY_SOURCE_FILES
         components/rle/RleDecoder.cpp
         components/heartrate/HeartRateController.cpp
         heartratetask/HeartRateTask.cpp
+        sleeptracktask/SleepTrackTask.cpp
         components/heartrate/Ppg.cpp
 
         components/motor/MotorController.cpp
@@ -677,6 +680,7 @@ set(INCLUDE_FILES
         heartratetask/HeartRateTask.h
         components/heartrate/Ppg.h
         components/heartrate/HeartRateController.h
+        sleeptracktask/SleepTrackTask.h
         libs/arduinoFFT/src/arduinoFFT.h
         libs/arduinoFFT/src/defs.h
         libs/arduinoFFT/src/types.h
