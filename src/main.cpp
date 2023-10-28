@@ -108,6 +108,7 @@ Pinetime::Controllers::AlarmController alarmController {dateTimeController};
 Pinetime::Controllers::TouchHandler touchHandler;
 Pinetime::Controllers::ButtonHandler buttonHandler;
 Pinetime::Controllers::BrightnessController brightnessController {};
+Pinetime::Applications::SleepTrackTask sleepTrackTask(motionController, settingsController);
 
 Pinetime::Applications::DisplayApp displayApp(lcd,
                                               touchPanel,
@@ -142,6 +143,7 @@ Pinetime::System::SystemTask systemTask(spi,
                                         heartRateController,
                                         displayApp,
                                         heartRateApp,
+                                        sleepTrackTask,
                                         fs,
                                         touchHandler,
                                         buttonHandler);

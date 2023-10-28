@@ -49,6 +49,7 @@ SystemTask::SystemTask(Drivers::SpiMaster& spi,
                        Pinetime::Controllers::HeartRateController& heartRateController,
                        Pinetime::Applications::DisplayApp& displayApp,
                        Pinetime::Applications::HeartRateTask& heartRateApp,
+                       Pinetime::Applications::SleepTrackTask& sleepTrackTask,
                        Pinetime::Controllers::FS& fs,
                        Pinetime::Controllers::TouchHandler& touchHandler,
                        Pinetime::Controllers::ButtonHandler& buttonHandler)
@@ -69,6 +70,7 @@ SystemTask::SystemTask(Drivers::SpiMaster& spi,
     motionController {motionController},
     displayApp {displayApp},
     heartRateApp(heartRateApp),
+    sleepTrackTask {sleepTrackTask},
     fs {fs},
     touchHandler {touchHandler},
     buttonHandler {buttonHandler},
@@ -141,6 +143,7 @@ void SystemTask::Work() {
   heartRateSensor.Init();
   heartRateSensor.Disable();
   heartRateApp.Start();
+  sleepTrackTask.Start();
 
   buttonHandler.Init(this);
 

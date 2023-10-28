@@ -10,7 +10,7 @@ SleepTrackTask::SleepTrackTask(Pinetime::Controllers::MotionController& motionCo
 void SleepTrackTask::Start() {
   messageQueue = xQueueCreate(10, 1);
 
-  if (pdPASS != xTaskCreate(SleepTrackTask::Process, "Sleeptrack", 1000, this, 0, &taskHandle)) {
+  if (pdPASS != xTaskCreate(SleepTrackTask::Process, "Sleeptrack", 500, this, 0, &taskHandle)) {
     APP_ERROR_HANDLER(NRF_ERROR_NO_MEM);
   }
 }
