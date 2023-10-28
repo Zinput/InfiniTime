@@ -32,6 +32,10 @@ namespace Pinetime {
         return zHistory[0];
       }
 
+      int16_t ZMean() const {
+        return stats.zMean;
+      }
+
       uint32_t NbSteps() const {
         return nbSteps;
       }

@@ -5,6 +5,7 @@
 #include <task.h>
 #include <queue.h>
 #include "utility/CircularBuffer.h"
+#include "components/motion/MotionController.h"
 #include "components/settings/Settings.h"
 
 namespace Pinetime {
