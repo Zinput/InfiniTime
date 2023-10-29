@@ -285,13 +285,13 @@ namespace Pinetime {
     private:
       Pinetime::Controllers::FS& fs;
 
-      static constexpr uint32_t settingsVersion = 0x0006;
+      static constexpr uint32_t settingsVersion = 0x0007;
 
       struct SettingsData {
         uint32_t version = settingsVersion;
         uint32_t stepsGoal = 10000;
         uint32_t screenTimeOut = 15000;
-        uint32_t sleepThresh = 40; // threshold for sleep detection
+        uint32_t sleepThresh = 1600; // threshold for sleep detection
 
         ClockType clockType = ClockType::H24;
         Notification notificationStatus = Notification::On;

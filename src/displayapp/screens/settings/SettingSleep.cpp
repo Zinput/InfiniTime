@@ -76,9 +76,9 @@ void SettingSleep::UpdateSelected(lv_obj_t* object, lv_event_t event) {
 
   int valueChange = 0;
   if (event == LV_EVENT_SHORT_CLICKED) {
-    valueChange = 1;
-  } else if (event == LV_EVENT_LONG_PRESSED || event == LV_EVENT_LONG_PRESSED_REPEAT) {
     valueChange = 10;
+  } else if (event == LV_EVENT_LONG_PRESSED || event == LV_EVENT_LONG_PRESSED_REPEAT) {
+    valueChange = 100;
   } else {
     return;
   }
@@ -89,7 +89,7 @@ void SettingSleep::UpdateSelected(lv_obj_t* object, lv_event_t event) {
     value -= valueChange;
   }
 
-  if (value >= 1 && value <= 420) {
+  if (value >= 10 && value <= 42069) {
     settingsController.SetSleepThresh(value);
     lv_label_set_text_fmt(sleepThresh, "%lu", settingsController.GetSleepThresh());
     lv_obj_realign(sleepThresh);

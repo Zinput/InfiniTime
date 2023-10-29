@@ -39,7 +39,7 @@ int16_t SleepTrackTask::GetEpoch() {
   int16_t epoch {0};
   for (uint8_t i {1}; i < 15; ++i) {
     epoch += motionController.ZMean();
-    vTaskDelay(4000); // delay for 4000 ticks? How long is a tick?
+    vTaskDelay(4096); // delay for 4 seconds or 4096 ticks at 1024 Hz
   }
   return epoch;
 }
