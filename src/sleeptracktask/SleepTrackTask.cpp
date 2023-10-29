@@ -29,9 +29,10 @@ void SleepTrackTask::Work() {
   while (true) {
     epochHistory++;
     epochHistory[0] = SleepTrackTask::GetEpoch();
-  }
-  if (SleepTrackTask::GetActivity() < static_cast<int16_t>(settingsController.GetSleepThresh())) {
-    motionController.SetSleepMinutes(motionController.GetSleepMinutes() + 1);
+
+    if (SleepTrackTask::GetActivity() < static_cast<int16_t>(settingsController.GetSleepThresh())) {
+      motionController.SetSleepMinutes(motionController.GetSleepMinutes() + 1);
+    }
   }
 }
 
@@ -45,7 +46,7 @@ int16_t SleepTrackTask::GetEpoch() {
 }
 
 int16_t SleepTrackTask::GetActivity() {
-  return (0.04*epochHistory[0] + 0.2*epochHistory[1] + 4*epochHistory[2] + 0.2*epochHistory[3] + 0.04*epochHistory[4]);
+  return static_cast<int16_t>(0.04*epochHistory[0] + 0.2*epochHistory[1] + 1*epochHistory[2] + 0.2*epochHistory[3] + 0.04*epochHistory[4]);
 }
 
 
