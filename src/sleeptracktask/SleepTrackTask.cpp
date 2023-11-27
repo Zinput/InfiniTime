@@ -38,9 +38,12 @@ void SleepTrackTask::Work() {
 
 int16_t SleepTrackTask::GetEpoch() {
   int16_t epoch {0};
+  TickType_t xLastWakeTime = xTaskGetTickCount();
+  const TickType_t xFrequency = 4096;
+
   for (uint8_t i {1}; i < 15; ++i) {
+    vTaskDelayUntil(&xLastWakeTime, xFrequency); // delay for 4 seconds or 4096 ticks at 1024 Hz
     epoch += motionController.ZMean();
-    vTaskDelay(4096); // delay for 4 seconds or 4096 ticks at 1024 Hz
   }
   return epoch;
 }
